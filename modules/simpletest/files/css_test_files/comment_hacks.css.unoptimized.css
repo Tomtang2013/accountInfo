@@ -64,14 +64,14 @@ that macIE5 ignores the following rule. Odd, but extremely useful. */
 }
 /**************************************/
 .comment-in-quotes-with-escaped:before {
-  content: '/* \" \' */';
+  /*content: ' \" \' ';*/
 }
 .this_rule_must_stay {
   color: #F00;
   background-color: #FFF;
 }
 .comment-in-quotes-with-escaped:after {
-  content: "*/ \" \ '";
+  // content: "*/ \" \ '";
 }
 /************************************/
 /*

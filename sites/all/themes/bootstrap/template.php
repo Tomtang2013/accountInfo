@@ -47,6 +47,11 @@ function bootstrap_theme(&$existing, $type, $theme, $path) {
   return _bootstrap_theme($existing, $type, $theme, $path);
 }
 
+function bootstrap_system_powered_by(){
+    return '<span>' . t('Powered by <a href="@poweredby">Tom Tang</a>', array('@poweredby' => '')) . '</span>';
+
+}
+
 /**
  * Declare various hook_*_alter() hooks.
  *
