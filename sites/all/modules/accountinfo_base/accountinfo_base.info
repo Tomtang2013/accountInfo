@@ -1,0 +1,10 @@
+name = Account Info  Base
+description = Account Info  Base Model.
+core = 7.x
+
+package = Account Information Management
+
+version = "7.x-1.0"
+core = "7.x"
+project = "accountinfo_base"
+datestamp = ""

@@ -21,7 +21,7 @@ function bootstrap_css_alter(&$css) {
       $cdn = '//netdna.bootstrapcdn.com/bootswatch/' . $bootstrap_cdn  . '/' . theme_get_setting('bootstrap_bootswatch') . '/bootstrap.min.css';
     }
     else {
-      $cdn = '//netdna.bootstrapcdn.com/bootstrap/' . $bootstrap_cdn  . '/css/bootstrap.min.css';
+      $cdn = '';
     }
     $css[$cdn] = array(
       'data' => $cdn,

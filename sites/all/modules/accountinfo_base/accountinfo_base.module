@@ -1,0 +1,113 @@
+<?php
+
+// $Id: accountinfo_base.info,v 1.4 2011/07/04 13:25:57 dries Exp $
+
+/**
+ * Implementation of hook_init
+ */
+function accountinfo_base_init() {
+    
+}
+
+function accountinfo_base_js_alter(&$javascript) {
+    
+}
+
+/**
+ * Implements hook_help().
+ */
+function accountinfo_base_help($path, $arg) {
+    switch ($path) {
+        case 'admin/help#accountinfo_base':
+            $output = '<h3>' . t('About') . '</h3>';
+            $output .= '<p>' . t('帐号管理 基础模块');
+            return $output;
+    }
+}
+
+/**
+ * Implements hook_permission().
+ */
+function accountinfo_base_permission() {
+    return array(
+        'accountinfo_base' => array(
+            'title' => t('Account Information Base'),
+        ),
+        'accountinfo_dashboard' => array(
+            'title' => t('Account Information Dashboard'),
+        ),
+        'accountinfo_management' => array(
+            'title' => t('Account Information Management'),
+        ),
+    );
+}
+
+function accountinfo_base_menu() {
+    $items = array();
+    $items['dashboard'] = array(
+        'title' => t('Dashboard'),
+        'page callback' => 'accountinfo_base_dashboard_call_back',
+        'access arguments' => array('accountinfo_dashboard'),
+        'weight' => -47,
+    );
+    $items['accountinfo/config'] = array(
+        'title' => t('Account Configuration'),
+        'page callback' => 'accountinfo_management_config_call_back',
+        'access arguments' => array('accountinfo_management'),
+        'file'          => 'inc/accountinfo_management.inc',
+        'weight' => -47,
+    );
+    return $items;
+}
+
+function accountinfo_base_dashboard_call_back() {
+    $pageContent = 'Welcome to Account Information Management System';
+    return $pageContent;
+}
+
+function accountinfo_base_block_info() {
+    $blocks['left_menu'] = array(
+        'info' => t('Left Menu'),
+        'cache' => DRUPAL_CACHE_PER_ROLE,
+    );
+    return $blocks;
+}
+
+function accountinfo_base_block_view($delta = '') {
+    $block = array();
+    switch ($delta) {
+        case 'left_menu':
+            $output = theme('left_menu');
+            $block['content'] = $output;
+            break;
+    }
+    return $block;
+}
+
+function accountinfo_base_theme() {
+    return array(
+        'left_menu' => array(
+            'template' => 'template/accountinfo_left_menu',
+        ),
+         'right_content' => array(
+            'template' => 'template/accountinfo_right_content',
+             'variables' => array('page_content' => NULL,$is_html=>false),
+        ),
+         'accountinfo_config' => array(
+            'template' => 'template/accountinfo_config',
+        ),
+    );
+}
+
+function rend_block_by_name($model_name, $block_name) {
+    $block = block_load($model_name, $block_name);
+    return drupal_render(_block_get_renderable_array(_block_render_blocks(array($block))));
+}
+
+function rend_left_menu_li($get_q,$text,$path){
+    if($get_q == $path){
+        return ' <li role="presentation" class="active" >'. l($text,$path).'</li>';
+    } else {
+         return ' <li role="presentation">'. l($text,$path).'</li>';
+    }
+}
