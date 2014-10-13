@@ -3,7 +3,7 @@ description = A subtheme of bootstrap, which is a flexible, recolorable theme wi
 core = 7.x
 base theme = bootstrap
 
-;stylesheets[all][] = css/docs.min.css
+stylesheets[all][] = css/accountinfo.css
 
 
 ;scripts[] = js/jquery.localscroll-1.2.7-min.js
