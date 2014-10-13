@@ -21,7 +21,7 @@
     <div class="col-lg-8">
         <h4>参数设置</h4>
          <div class="input-group">
-             <input type="text" class="form-control" id="allocationTotalNumber" placeholder="每次分配账号个数"/>
+             <input type="text" class="form-control" id="allocationTotalNumber" placeholder="每次分配账号个数,列:100"/>
             <span class="input-group-btn">
                 <button class="btn btn-primary" type="button">提交</button>
             </span>
