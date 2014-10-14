@@ -57,9 +57,34 @@ function accountinfo_base_menu() {
         'access arguments'  => array('accountinfo_dashboard'),
         'weight'            => -47,
     );
+    
     $items['accountinfo/config'] = array(
         'title' => t('Account Configuration'),
         'page callback'     => 'accountinfo_management_config_call_back',
+        'access arguments'  => array('accountinfo_management'),
+        'file'              => 'inc/admin/accountinfo_management.inc',
+        'weight'            => -47,
+    );
+    
+    $items['upload_account_file'] = array(
+        'title' => t('Upload Account File'),
+        'page callback'     => 'upload_account_file',
+        'access arguments'  => array('accountinfo_management'),
+        'file'              => 'inc/admin/accountinfo_management.inc',
+        'weight'            => -47,
+    );
+    
+    $items['export_account_file'] = array(
+        'title' => t('Upload Account File'),
+        'page callback'     => 'export_account_file',
+        'access arguments'  => array('accountinfo_management'),
+        'file'              => 'inc/admin/accountinfo_management.inc',
+        'weight'            => -47,
+    );
+    
+    $items['accountinfo/save_account_config'] = array(
+        'title' => t('Save Account Config'),
+        'page callback'     => 'save_account_config_ajax',
         'access arguments'  => array('accountinfo_management'),
         'file'              => 'inc/admin/accountinfo_management.inc',
         'weight'            => -47,
@@ -104,11 +129,12 @@ function accountinfo_base_menu() {
         'file'              => 'inc/member/accountinfo_member_status_record.inc',
         'weight'            => -47,
     );
+    
     return $items;
 }
 
 function accountinfo_base_dashboard_call_back() {
-    $pageContent = 'Welcome to Account Information Management System';
+    $pageContent = '<h2>欢迎使用本系统！</h2>';
     return $pageContent;
 }
 

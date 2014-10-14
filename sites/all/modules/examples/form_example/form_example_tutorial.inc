@@ -761,12 +761,14 @@ function form_example_tutorial_10($form_state) {
  * @ingroup form_example
  */
 function form_example_tutorial_10_validate($form, &$form_state) {
+   
   $file = file_save_upload('file', array(
     // Validates file is really an image.
     'file_validate_is_image' => array(),
     // Validate extensions.
     'file_validate_extensions' => array('png gif jpg jpeg'),
   ));
+   
   // If the file passed validation:
   if ($file) {
     // Move the file into the Drupal file system.
