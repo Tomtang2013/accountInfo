@@ -138,14 +138,9 @@ function export_account_file(){
         }
         $column++;
     }
-//    $fileName = iconv("utf-8", "gb2312", $fileName);
-    header('Content-Type: application/vnd.ms-excel');
-    header('Content-Disposition: attachment;filename="'.$fileName.'"');
-    header('Cache-Control: max-age=0');
-
-    $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-    $objWriter->save('php://output');
+    accountinfo_base_export_file($fileName,$objPHPExcel);
 }
+
 
 function save_account_config_ajax(){
     $allocationTotalNumber = $_POST['allocationTotalNumber'];

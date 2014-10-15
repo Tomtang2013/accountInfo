@@ -45,6 +45,9 @@ function accountinfo_base_permission() {
         'accountinfo_member_status_record' => array(
             'title' => t('Account Information Member Record Account using Status '),
         ),
+        'accountinfo_account_update' => array(
+            'title' => t('Update Account Information '),
+        ),
         
     );
 }
@@ -121,12 +124,36 @@ function accountinfo_base_menu() {
         'file'              => 'inc/member/accountinfo_member_allocation_status.inc',
         'weight'            => -47,
     );
+    
+    $items['accountinfo/export_member_allocation_file'] = array(
+        'title' => t('Member Additional Status'),
+        'page callback'     => 'export_member_allocation_file',
+        'access arguments'  => array('accountinfo_member_allocation_status'),
+        'file'              => 'inc/member/accountinfo_member_allocation_status.inc',
+        'weight'            => -47,
+    );
+    
        
     $items['accountinfo/member_status_record'] = array(
         'title' => t('Member Additional Status'),
         'page callback'     => 'accountinfo_member_status_record_call_back',
         'access arguments'  => array('accountinfo_member_status_record'),
         'file'              => 'inc/member/accountinfo_member_status_record.inc',
+        'weight'            => -47,
+    );
+    $items['accountinfo/member_status_record_submit'] = array(
+        'title' => t('Member Additional Status'),
+        'page callback'     => 'accountinfo_member_status_record_submit',
+        'access arguments'  => array('accountinfo_member_status_record'),
+        'file'              => 'inc/member/accountinfo_member_status_record.inc',
+        'weight'            => -47,
+    );
+    
+     $items['accountinfo/account_info_update'] = array(
+        'title' => t('Member Additional Status'),
+        'page callback'     => 'accountinfo_account_update_call_back',
+        'access arguments'  => array('accountinfo_account_update'),
+        'file'              => 'inc/member/accountinfo_account_update.inc',
         'weight'            => -47,
     );
     
@@ -181,13 +208,27 @@ function accountinfo_base_theme() {
         'accountinfo_member_allocation_status' => array(
             'template' => 'template/member/accountinfo_member_allocation_status',
         ),
+        'member_allocation_status_tr' => array(
+            'template' => 'template/member/member_allocation_status_tr',
+            'variables' => array('row' => NULL),
+        ),
         'accountinfo_member_status_record' => array(
             'template' => 'template/member/accountinfo_member_status_record',
         ),
+        'member_status_tr' => array(
+            'template' => 'template/member/member_status_tr',
+            'variables' => array('row' => NULL),
+        ),
         'member_status_radio' => array(
             'template' => 'template/member/member_status_radio',
-            'variables' => array('items' => NULL),
+            'variables' => array('idx'=>null ,'items' => NULL),
         ),
+        
+        'accountinfo_account_update' => array(
+            'template' => 'template/member/accountinfo_account_update',
+            'variables' => array('idx'=>null ,'items' => NULL),
+        ),
+        
         
     );
 }
@@ -203,4 +244,14 @@ function rend_left_menu_li($get_q,$text,$path){
     } else {
          return ' <li role="presentation">'. l($text,$path).'</li>';
     }
+}
+
+function accountinfo_base_export_file($fileName,$objPHPExcel){
+    //    $fileName = iconv("utf-8", "gb2312", $fileName);
+    header('Content-Type: application/vnd.ms-excel');
+    header('Content-Disposition: attachment;filename="'.$fileName.'"');
+    header('Cache-Control: max-age=0');
+
+    $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+    $objWriter->save('php://output');
 }
