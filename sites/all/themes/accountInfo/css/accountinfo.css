@@ -19,3 +19,8 @@
     background-repeat: no-repeat;
     visibility:hidden;
 }
+
+.account-form-item{
+    padding-top:10px;
+    padding-bottom:10px;
+}

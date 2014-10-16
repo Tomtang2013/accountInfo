@@ -149,9 +149,25 @@ function accountinfo_base_menu() {
         'weight'            => -47,
     );
     
-     $items['accountinfo/account_info_update'] = array(
+    $items['accountinfo/account_info_update'] = array(
         'title' => t('Member Additional Status'),
         'page callback'     => 'accountinfo_account_update_call_back',
+        'access arguments'  => array('accountinfo_account_update'),
+        'file'              => 'inc/member/accountinfo_account_update.inc',
+        'weight'            => -47,
+    );
+     
+    $items['accountinfo/account_auto_complete'] = array(
+        'title' => t('Member Additional Status'),
+        'page callback'     => 'account_auto_complete_call_back',
+        'access arguments'  => array('accountinfo_account_update'),
+        'file'              => 'inc/member/accountinfo_account_update.inc',
+        'weight'            => -47,
+    );
+    
+    $items['accountinfo/account_update_submit'] = array(
+        'title' => t('Member Additional Status'),
+        'page callback'     => 'account_update_submit_call_back',
         'access arguments'  => array('accountinfo_account_update'),
         'file'              => 'inc/member/accountinfo_account_update.inc',
         'weight'            => -47,

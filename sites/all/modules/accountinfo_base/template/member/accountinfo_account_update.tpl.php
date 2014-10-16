@@ -1,61 +1,54 @@
-<?php ?> 
-<form class="form-horizontal">
-    <fieldset>
+<?php 
+    drupal_add_js(drupal_get_path('module','accountinfo_base').'/js/common/bootstrap-typeahead.js');
+    drupal_add_js(drupal_get_path('module','accountinfo_base').'/js/member/accountinfo_account_update.js');
+    drupal_add_css(drupal_get_path('theme','accountInfo').'/css/docs.min.css');
+    
+    global $base_url;
+    $account_auto_complete_url =  $base_url .'/accountinfo/account_auto_complete';
+    $account_update_submit_url =  $base_url .'/accountinfo/account_update_submit';
 
-        <!-- Form Name -->
-        <legend>Form Name</legend>
+?> 
+<input type="hidden" id="account-auto-complete-url" 
+       value="<?php print $account_auto_complete_url;?>"/>
+<input type="hidden" id="account-update-submit-url" 
+       value="<?php print $account_update_submit_url;?>"/>
+<div class="row" >
+    <div class="col-lg-10 col-lg-offset-1" >
+        <div class="form-horizontal">
+            <fieldset>
+                <!-- Form Name -->
+                <legend><strong>账户信息修改</strong></legend>
+                <div  class="input-group account-form-item ">
+                    <span class="input-group-addon">账号:</span>
+                    <input id="account_input_box" type="text" class="form-control"
+                          autocomplete="off" placeholder="账号" data-provide="typeahead">
+                </div>
+                <div class="input-group account-form-item">
+                    <span class="input-group-addon">密码:</span>
+                    <input id="account_update_pass" type="text" class="form-control" placeholder="密码">
+                </div>
 
-        <!-- Text input-->
-        <div class="control-group">
-            <label class="control-label" for="textinput-0">Text Input</label>
-            <div class="controls">
-                <input id="textinput-0" name="textinput-0" type="text" placeholder="placeholder" class="input-xlarge">
-                <p class="help-block">help</p>
-            </div>
+                <div class="input-group account-form-item">
+                    <span class="input-group-addon">邮箱:</span>
+                    <input id="account_update_email"  type="text" class="form-control" placeholder="邮箱@">
+                </div>
+
+                <div class="input-group account-form-item">
+                    <span class="input-group-addon">备注:</span>
+                    <textarea id="account_update_comment"  type="text" class="form-control" placeholder="备注"></textarea>
+                </div>
+
+                <!-- Button (Double) -->
+                <div class="control-group account-form-item">
+                    <div class="controls col-lg-3" style="margin-top: 10px;padding-left:0px;">
+                        <button id="account_update_submit"class="btn btn-success">提交</button>
+                        <button id="account_update_reset"  class="btn btn-primary">取消</button>
+                    </div>
+                    <div id="account-update-msg-box" class="bs-callout col-lg-9" 
+                         style="height:34px;padding-top: 5px; visibility:hidden;">
+                    </div>
+                </div>
+            </fieldset>
         </div>
-
-        <!-- Password input-->
-        <div class="control-group">
-            <label class="control-label" for="passwordinput-0">Password Input</label>
-            <div class="controls">
-                <input id="passwordinput-0" name="passwordinput-0" type="password" placeholder="placeholder" class="input-xlarge">
-                <p class="help-block">help</p>
-            </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="control-group">
-            <label class="control-label" for="textinput-2">Text Input</label>
-            <div class="controls">
-                <input id="textinput-2" name="textinput-2" type="text" placeholder="placeholder" class="input-xlarge">
-                <p class="help-block">help</p>
-            </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="control-group">
-            <label class="control-label" for="textinput-1">Text Input</label>
-            <div class="controls">
-                <input id="textinput-1" name="textinput-1" type="text" placeholder="placeholder" class="input-xlarge">
-                <p class="help-block">help</p>
-            </div>
-        </div>
-
-        <!-- Textarea -->
-        <div class="control-group">
-            <label class="control-label" for="textarea-0">Text Area</label>
-            <div class="controls">                     
-                <textarea id="textarea-0" name="textarea-0">default text</textarea>
-            </div>
-        </div>
-
-        <!-- Button (Double) -->
-        <div class="control-group">
-            <label class="control-label" for="button1id-0">Double Button</label>
-            <div class="controls">
-                <button id="button1id-0" name="button1id-0" class="btn btn-success">Good Button</button>
-                <button id="button2id" name="button2id" class="btn btn-danger">Scary Button</button>
-            </div>
-        </div>
-    </fieldset>
-</form>
+    </div>
+</div>

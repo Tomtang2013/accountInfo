@@ -7,6 +7,7 @@ function accountinfo_member_status_record_call_back() {
 
 function accountinfo_member_status_record_submit(){
     $use_status = $_POST['use_status'];
+    dd($use_status);
     echo drupal_json_output(array('status'=>'success'));
 }
 
